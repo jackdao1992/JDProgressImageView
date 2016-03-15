@@ -6,7 +6,7 @@ Demo progress view with image. This is demo using Swift to make custom progress 
 
 We Have many way for create progress view with this:
 
-1. Create with 2 image
+1 Create with 2 image
 
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/bottle_empty.png)
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/bottle_full.png)
@@ -21,7 +21,7 @@ progressView.setProgress(0)
 self.view.addSubview(progressView)
 ```
 
-2. Create with 1 image and progress color
+2 Create with 1 image and progress color
 
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/bottle_1.png)
 
@@ -33,7 +33,7 @@ progressView1.setProgress(0)
 self.view.addSubview(progressView1)
 ```
 
-3. Create with custom color for full progress image
+3 Create with custom color for full progress image
 
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/battery3_empty.png)
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/battery3_full.png)
