@@ -23,9 +23,9 @@ self.view.addSubview(progressView)
 
 2. Create with 1 image and progress color
 
-```swift
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/bottle_1.png)
 
+```swift
 progressView1.frame = CGRectMake(10, 260, 20, 70)
 progressView1.emptyProgressImagePath = "bottle_1.png"
 progressView1.fullColorProgress = UIColor.greenColor()
@@ -35,10 +35,10 @@ self.view.addSubview(progressView1)
 
 3 Create with custom color for full progress image
 
-```swift
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/battery3_empty.png)
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/battery3_full.png)
 
+```swift
 progressBatteryView3.frame = CGRectMake(70, 320, 100, 50)
 progressBatteryView3.emptyProgressImagePath = "battery3_empty.png"
 progressBatteryView3.fullProgressImagePath = "battery3_full.png"
