@@ -33,7 +33,7 @@ progressView1.setProgress(0)
 self.view.addSubview(progressView1)
 ```
 
-3 Create with custom color for full progress image
+3. Create with custom color for full progress image
 
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/battery3_empty.png)
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/ProgressCustom/ProgressCustom/battery3_full.png)
