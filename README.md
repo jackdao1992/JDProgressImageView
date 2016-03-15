@@ -50,6 +50,8 @@ progressBatteryView3.setProgress(0)
 self.view.addSubview(progressBatteryView3)
 ```
 
+# Screenshot
+
 ![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/Screenshot/screenshot.gif)
 
 # Licenses
