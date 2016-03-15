@@ -15,6 +15,7 @@ class JDProgressView: UIView {
     var fullColorProgress: UIColor? = nil
     
     var maskImageView = UIImageView()
+    let shapeMaskValue = CAShapeLayer()
     
     var isVerticalProgress = false // doc
     private var progress:CGFloat = 0
@@ -77,7 +78,32 @@ class JDProgressView: UIView {
         
         layerEmpty.contents = UIImage(named: emptyProgressImagePath)?.CGImage
         layerEmpty.frame = self.bounds
-        if fullProgressImagePath != nil {
+        
+        let path = UIBezierPath()
+        if !isVerticalProgress {
+            let ignoreYTop = ignoreTop * self.bounds.height
+            let ignoreYBottom = ignoreBottom * self.bounds.height
+            let heightOfValue = progress * (self.bounds.height - ignoreYTop - ignoreYBottom)
+            let yLimit = self.bounds.height - ignoreYBottom - heightOfValue
+            path.moveToPoint(CGPointMake(0, yLimit))
+            path.addLineToPoint(CGPointMake(self.bounds.width, yLimit))
+            path.addLineToPoint(CGPointMake(self.bounds.width, yLimit + heightOfValue))
+            path.addLineToPoint(CGPointMake(0, yLimit + heightOfValue))
+            path.closePath()
+        } else {
+            let ignoreYTop = ignoreTop * self.bounds.width
+            let ignoreYBottom = ignoreBottom * self.bounds.width
+            let widthOfValue = progress * (self.bounds.width - ignoreYTop - ignoreYBottom)
+            let xLimit = widthOfValue
+            path.moveToPoint(CGPointMake(0, 0))
+            path.addLineToPoint(CGPointMake(xLimit, 0))
+            path.addLineToPoint(CGPointMake(xLimit, self.bounds.height))
+            path.addLineToPoint(CGPointMake(0, self.bounds.height))
+            path.closePath()
+        }
+        let oldPath = shapeMaskValue.path
+        
+        if fullProgressImagePath != nil && fullColorProgress == nil {
             if fullProgressImagePath != nil {
                 if layerFull == nil {
                     layerFull = CALayer()
@@ -85,42 +111,25 @@ class JDProgressView: UIView {
                 layerFull?.contents = UIImage(named: fullProgressImagePath!)?.CGImage
                 layerFull?.frame = self.bounds
             }
-
-            let ignoreYTop = ignoreTop * self.bounds.height
-            let ignoreYBottom = ignoreBottom * self.bounds.height
-            let heightOfValue = progress * (self.bounds.height - ignoreYTop - ignoreYBottom)
             
-            let path = UIBezierPath()
-            let yLimit = self.bounds.height - ignoreYBottom - heightOfValue
-            path.moveToPoint(CGPointMake(0, yLimit))
-            path.addLineToPoint(CGPointMake(self.bounds.width, yLimit))
-            path.addLineToPoint(CGPointMake(self.bounds.width, yLimit + heightOfValue))
-            path.addLineToPoint(CGPointMake(0, yLimit + heightOfValue))
-            path.closePath()
-            
-            let shapeMaskValue = CAShapeLayer()
             shapeMaskValue.frame = self.bounds
             shapeMaskValue.path = path.CGPath
+            
+            let animationLine = CABasicAnimation(keyPath: "path")
+            animationLine.fromValue = oldPath
+            animationLine.toValue = path.CGPath
+            animationLine.duration = 0.33
+            animationLine.additive = true
+            
+            shapeMaskValue.addAnimation(animationLine, forKey: "animationPath")
             
             layerFull?.mask = shapeMaskValue
             self.layer.addSublayer(layerEmpty)
             self.layer.addSublayer(layerFull!)
-        } else if self.fullColorProgress != nil {
-            let ignoreYTop:CGFloat = 0
-            let ignoreYBottom:CGFloat = 0
-            let heightOfValue = progress * (self.bounds.height - ignoreYTop - ignoreYBottom)
-            
-            let path = UIBezierPath()
-            let yLimit = self.bounds.height - ignoreYBottom - heightOfValue
-            path.moveToPoint(CGPointMake(0, yLimit))
-            path.addLineToPoint(CGPointMake(self.bounds.width, yLimit))
-            path.addLineToPoint(CGPointMake(self.bounds.width, yLimit + heightOfValue))
-            path.addLineToPoint(CGPointMake(0, yLimit + heightOfValue))
-            path.closePath()
-            
-            let shapeMaskValue = CAShapeLayer()
+        } else if self.fullColorProgress != nil && self.fullProgressImagePath == nil {
             shapeMaskValue.frame = self.bounds
             shapeMaskValue.path = path.CGPath
+            shapeMaskValue.fillColor = fullColorProgress?.CGColor
             
             if layerFull == nil {
                 layerFull = CALayer()
@@ -129,12 +138,42 @@ class JDProgressView: UIView {
                 
                 maskImageView = UIImageView(image: self.imageWithImage(UIImage(named: emptyProgressImagePath)!, scaledToSize: self.bounds.size))
             }
-            layerFull?.mask = shapeMaskValue
+            
+            let animationLine = CABasicAnimation(keyPath: "path")
+            animationLine.fromValue = oldPath
+            animationLine.toValue = path.CGPath
+            animationLine.duration = 0.33
+            animationLine.additive = true
+            
+            shapeMaskValue.addAnimation(animationLine, forKey: "animationPath")
             
             self.layer.addSublayer(layerEmpty)
-            self.layer.addSublayer(layerFull!)
+            self.layer.addSublayer(shapeMaskValue)
             self.maskView = maskImageView
+        } else {
+            shapeMaskValue.frame = self.bounds
+            shapeMaskValue.path = path.CGPath
+            shapeMaskValue.fillColor = fullColorProgress?.CGColor
             
+            if layerFull == nil {
+                layerFull = CALayer()
+                layerFull?.frame = self.bounds
+                layerFull?.backgroundColor = fullColorProgress?.CGColor
+                
+                maskImageView = UIImageView(image: self.imageWithImage(UIImage(named: fullProgressImagePath!)!, scaledToSize: self.bounds.size))
+            }
+            
+            let animationLine = CABasicAnimation(keyPath: "path")
+            animationLine.fromValue = oldPath
+            animationLine.toValue = path.CGPath
+            animationLine.duration = 0.33
+            animationLine.additive = true
+            
+            shapeMaskValue.addAnimation(animationLine, forKey: "animationPath")
+            shapeMaskValue.mask = maskImageView.layer
+            self.layer.addSublayer(layerEmpty)
+            self.layer.addSublayer(shapeMaskValue)
+//            self.maskView = maskImageView
         }
     }
     

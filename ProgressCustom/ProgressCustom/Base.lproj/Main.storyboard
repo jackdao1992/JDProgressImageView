@@ -44,10 +44,6 @@
                                     <action selector="progressButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bo-Os-9M1"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bG-0A-Vaf">
-                                <rect key="frame" x="340" y="129" width="108" height="87"/>
-                                <color key="backgroundColor" red="0.83921568629999999" green="0.050980392159999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -65,7 +61,6 @@
                         <outlet property="emptyTypeImageView" destination="81J-Ig-825" id="AT8-Mk-RIL"/>
                         <outlet property="fullTypeImageView" destination="4ax-nc-mi0" id="K4x-2I-fsR"/>
                         <outlet property="heightFullBottleContraint" destination="7ic-Xh-9Gd" id="wYs-1h-hEO"/>
-                        <outlet property="testView" destination="9bG-0A-Vaf" id="u5U-82-zR7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
