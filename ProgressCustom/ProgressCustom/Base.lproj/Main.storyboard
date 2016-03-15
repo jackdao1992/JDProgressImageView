@@ -18,27 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottle_empty.png" translatesAutoresizingMaskIntoConstraints="NO" id="81J-Ig-825">
-                                <rect key="frame" x="20" y="20" width="225" height="225"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="225" id="Kgf-hm-5hh"/>
-                                    <constraint firstAttribute="height" constant="225" id="cCo-z8-jh2"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottle_full.png" translatesAutoresizingMaskIntoConstraints="NO" id="4ax-nc-mi0">
-                                <rect key="frame" x="20" y="20" width="225" height="225"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="225" id="7ic-Xh-9Gd"/>
-                                </constraints>
-                            </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nHT-Br-Rr3">
-                                <rect key="frame" x="265" y="70" width="277" height="31"/>
+                                <rect key="frame" x="45" y="70" width="497" height="31"/>
                                 <connections>
                                     <action selector="sliderValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="abn-IU-cTb"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JST-yu-461">
-                                <rect key="frame" x="260" y="129" width="61" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JST-yu-461">
+                                <rect key="frame" x="270" y="127" width="61" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="61" id="C68-Fg-7sR"/>
+                                    <constraint firstAttribute="height" constant="30" id="htO-Qy-FIa"/>
+                                </constraints>
                                 <state key="normal" title="progress"/>
                                 <connections>
                                     <action selector="progressButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bo-Os-9M1"/>
@@ -47,29 +38,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4ax-nc-mi0" firstAttribute="leading" secondItem="81J-Ig-825" secondAttribute="leading" id="CnX-UE-pwP"/>
-                            <constraint firstItem="4ax-nc-mi0" firstAttribute="width" secondItem="81J-Ig-825" secondAttribute="width" id="MIZ-Lc-W64"/>
-                            <constraint firstItem="nHT-Br-Rr3" firstAttribute="leading" secondItem="4ax-nc-mi0" secondAttribute="trailing" constant="22" id="OBT-Lx-RZE"/>
+                            <constraint firstItem="nHT-Br-Rr3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="47" id="068-x3-H4H"/>
                             <constraint firstItem="nHT-Br-Rr3" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="-40" id="P1d-5v-Hom"/>
-                            <constraint firstItem="4ax-nc-mi0" firstAttribute="bottom" secondItem="81J-Ig-825" secondAttribute="bottom" id="TWA-h2-88w"/>
-                            <constraint firstItem="81J-Ig-825" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="VhQ-mG-1Og"/>
+                            <constraint firstItem="JST-yu-461" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d3z-fB-mvU"/>
+                            <constraint firstItem="JST-yu-461" firstAttribute="top" secondItem="nHT-Br-Rr3" secondAttribute="bottom" constant="27" id="n7T-Fh-JVm"/>
                             <constraint firstItem="nHT-Br-Rr3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="nTh-sy-eMT"/>
-                            <constraint firstItem="81J-Ig-825" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ohJ-rZ-R30"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="emptyTypeImageView" destination="81J-Ig-825" id="AT8-Mk-RIL"/>
-                        <outlet property="fullTypeImageView" destination="4ax-nc-mi0" id="K4x-2I-fsR"/>
-                        <outlet property="heightFullBottleContraint" destination="7ic-Xh-9Gd" id="wYs-1h-hEO"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="92" y="358"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="bottle_empty.png" width="225" height="225"/>
-        <image name="bottle_full.png" width="225" height="225"/>
-    </resources>
 </document>

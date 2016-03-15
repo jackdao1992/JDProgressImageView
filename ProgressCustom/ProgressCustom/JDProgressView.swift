@@ -34,8 +34,8 @@ class JDProgressView: UIView {
         ||||||||||
     
     */
-    var ignoreTop:CGFloat = 0
-    var ignoreBottom:CGFloat = 0
+    var ignoreTopPercent:CGFloat = 0
+    var ignoreBottomPercent:CGFloat = 0
     
     var layerEmpty = CALayer()
     var layerFull: CALayer?
@@ -81,8 +81,8 @@ class JDProgressView: UIView {
         
         let path = UIBezierPath()
         if !isVerticalProgress {
-            let ignoreYTop = ignoreTop * self.bounds.height
-            let ignoreYBottom = ignoreBottom * self.bounds.height
+            let ignoreYTop = ignoreTopPercent * self.bounds.height
+            let ignoreYBottom = ignoreBottomPercent * self.bounds.height
             let heightOfValue = progress * (self.bounds.height - ignoreYTop - ignoreYBottom)
             let yLimit = self.bounds.height - ignoreYBottom - heightOfValue
             path.moveToPoint(CGPointMake(0, yLimit))
@@ -91,14 +91,14 @@ class JDProgressView: UIView {
             path.addLineToPoint(CGPointMake(0, yLimit + heightOfValue))
             path.closePath()
         } else {
-            let ignoreYTop = ignoreTop * self.bounds.width
-            let ignoreYBottom = ignoreBottom * self.bounds.width
+            let ignoreYTop = ignoreTopPercent * self.bounds.width
+            let ignoreYBottom = ignoreBottomPercent * self.bounds.width
             let widthOfValue = progress * (self.bounds.width - ignoreYTop - ignoreYBottom)
             let xLimit = widthOfValue
-            path.moveToPoint(CGPointMake(0, 0))
-            path.addLineToPoint(CGPointMake(xLimit, 0))
-            path.addLineToPoint(CGPointMake(xLimit, self.bounds.height))
-            path.addLineToPoint(CGPointMake(0, self.bounds.height))
+            path.moveToPoint(CGPointMake(ignoreYBottom, 0))
+            path.addLineToPoint(CGPointMake(xLimit + ignoreYBottom, 0))
+            path.addLineToPoint(CGPointMake(xLimit + ignoreYBottom, self.bounds.height))
+            path.addLineToPoint(CGPointMake(ignoreYBottom, self.bounds.height))
             path.closePath()
         }
         let oldPath = shapeMaskValue.path
