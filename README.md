@@ -49,3 +49,9 @@ progressBatteryView3.isVerticalProgress = true
 progressBatteryView3.setProgress(0)
 self.view.addSubview(progressBatteryView3)
 ```
+
+![Output sample](https://raw.githubusercontent.com/jackdao1992/JDProgressImageView/master/Screenshot/screenshot.gif)
+
+# Licenses
+
+All source code is licensed under the MIT License.
